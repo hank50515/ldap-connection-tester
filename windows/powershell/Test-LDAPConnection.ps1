@@ -1,19 +1,19 @@
-﻿# LDAP Connection Test Tool
+# LDAP Connection Test Tool
 
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "LDAP Connection Test Tool" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 
 # User input parameters
-$server = Read-Host "`nEnter LDAP Server IP"
+$server = Read-Host "`nEnter LDAP Server IP: 192.168.1.0 or FQDN google.com.tw"
 $port = Read-Host "Enter Port (default 389, GC use 3268)"
 if ([string]::IsNullOrWhiteSpace($port)) { $port = "389" }
 
-$username = Read-Host "Enter Username (e.g., dev\hank_lin or user@domain.com)"
+$username = Read-Host "Enter Username (e.g., dev\user or user@domain.com)"
 $pwd = Read-Host "Enter Password" -AsSecureString
 $pwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($pwd))
 
-$searchBase = Read-Host "Enter Search Base (e.g., DC=dev,DC=gss)"
+$searchBase = Read-Host "Enter Search Base (e.g., DC=dev,DC=com)"
 
 $ldapPath = "LDAP://${server}:${port}"
 
@@ -44,6 +44,7 @@ try {
 } catch {
     Write-Host "`n✗ Connection failed" -ForegroundColor Red
     Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Yellow
+    pause
     exit
 }
 

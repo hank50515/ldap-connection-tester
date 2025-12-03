@@ -119,3 +119,5 @@ Write-Host "bindDn = `"$username`"" -ForegroundColor Yellow
 Write-Host "password = `"********`"" -ForegroundColor Yellow
 
 Write-Host "`nTest completed!" -ForegroundColor Cyan
+
+pause
